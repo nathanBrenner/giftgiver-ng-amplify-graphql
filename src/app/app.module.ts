@@ -8,6 +8,7 @@ import {
   MatInputModule,
   MatButtonModule,
   MatListModule,
+  MatCheckboxModule,
 } from '@angular/material';
 
 import { AppComponent } from './app.component';
@@ -19,6 +20,8 @@ import { GiverGroupsComponent } from './giver-groups/giver-groups.component';
 import { GiverGroupListComponent } from './giver-group-list/giver-group-list.component';
 import { GiverGroupComponent } from './giver-group/giver-group.component';
 import { GiverGroupFormComponent } from './giver-group-form/giver-group-form.component';
+import { DynamicFormComponent } from './dynamic-form/dynamic-form.component';
+import { DynamicFormQuestionComponent } from './dynamic-form-question/dynamic-form-question.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +32,9 @@ import { GiverGroupFormComponent } from './giver-group-form/giver-group-form.com
     GiverGroupsComponent,
     GiverGroupListComponent,
     GiverGroupComponent,
-    GiverGroupFormComponent
+    GiverGroupFormComponent,
+    DynamicFormComponent,
+    DynamicFormQuestionComponent
   ],
   imports: [
     BrowserModule,
@@ -40,6 +45,7 @@ import { GiverGroupFormComponent } from './giver-group-form/giver-group-form.com
     MatInputModule,
     MatButtonModule,
     MatListModule,
+    MatCheckboxModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
