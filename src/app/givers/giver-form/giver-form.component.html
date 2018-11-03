@@ -1,0 +1,15 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="giver-form" *ngIf="!showGiverList" >
+  <mat-form-field>
+    <input matInput placeholder="Name" formControlName="name">
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="Spouse" formControlName="spouse">
+  </mat-form-field>
+
+  <div class="form-actions">
+    <button mat-button *ngIf="!showGiverList" (click)="toggleGiverList.emit(showGiverList)" type="button">Create new list</button>
+    <button mat-button type="reset" *ngIf="!showGiverList">clear</button>
+    <button mat-raised-button color="primary" type="submit" *ngIf="!showGiverList">submit</button>
+  </div>
+</form>

@@ -2,10 +2,18 @@
 <div class="app">
 
   <gg-givers
-    (saveGiver)="addGiver($event)"
     [givers]="givers"
+    [showGiverList]="showGiverList"
+    (saveGiver)="addGiver($event)"
+    (toggleGiverList)="toggleGiverList($event)"
   ></gg-givers>
 
-  <gg-giver-groups
-  ></gg-giver-groups>
+  <div>
+    <gg-giver-groups
+      *ngIf="showGiverList"
+      [givers]="givers"
+      [groups]="groups"
+      (saveGroup)="saveGroup($event)"
+    ></gg-giver-groups>
+  </div>
 </div>

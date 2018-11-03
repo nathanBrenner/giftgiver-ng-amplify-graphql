@@ -8,8 +8,18 @@ import { Giver } from './models';
 })
 export class AppComponent {
   givers: Giver[] = [];
+  groups: any[] = [];
+  showGiverList = false;
 
   addGiver(giver: Giver) {
     this.givers = [...this.givers, giver];
+  }
+
+  saveGroup(data) {
+    console.log(data);
+  }
+
+  toggleGiverList(isVisible: boolean) {
+    this.showGiverList = !isVisible;
   }
 }

@@ -1,6 +1,6 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Giver } from '../models';
+import { Giver } from '../../models';
 import * as uuid from 'uuid/v4';
 
 @Component({
@@ -9,8 +9,17 @@ import * as uuid from 'uuid/v4';
   styleUrls: ['./giver-form.component.scss']
 })
 export class GiverFormComponent implements OnInit {
+  @Input()
+  givers: Giver[];
+
+  @Input()
+  showGiverList: boolean;
+
   @Output()
   saveGiver: EventEmitter<Giver> = new EventEmitter();
+
+  @Output()
+  toggleGiverList: EventEmitter<boolean> = new EventEmitter();
 
   form: FormGroup;
 
@@ -31,7 +40,7 @@ export class GiverFormComponent implements OnInit {
     if (this.form.valid) {
       const giver = { ...this.form.value, id: uuid() };
       this.saveGiver.emit(giver);
-      this.form.reset({name: '', spouse: ''});
+      this.form.setValue({name: '', spouse: ''});
     }
   }
 }

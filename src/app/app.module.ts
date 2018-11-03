@@ -1,3 +1,5 @@
+import { QuestionService } from './services/question.service';
+import { QuestionControlService } from './services/question-control.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -9,32 +11,22 @@ import {
   MatButtonModule,
   MatListModule,
   MatCheckboxModule,
+  MatSelectModule,
 } from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { GiverFormComponent } from './giver-form/giver-form.component';
-import { GiverListComponent } from './giver-list/giver-list.component';
-import { GiversComponent } from './givers/givers.component';
-import { GiverGroupsComponent } from './giver-groups/giver-groups.component';
-import { GiverGroupListComponent } from './giver-group-list/giver-group-list.component';
-import { GiverGroupComponent } from './giver-group/giver-group.component';
-import { GiverGroupFormComponent } from './giver-group-form/giver-group-form.component';
-import { DynamicFormComponent } from './dynamic-form/dynamic-form.component';
-import { DynamicFormQuestionComponent } from './dynamic-form-question/dynamic-form-question.component';
+
+import DynamicFormComponents from './dynamic-form';
+import GiverGroupsComponents from './giver-groups';
+import GiversComponents from './givers';
 
 @NgModule({
   declarations: [
     AppComponent,
-    GiverFormComponent,
-    GiverListComponent,
-    GiversComponent,
-    GiverGroupsComponent,
-    GiverGroupListComponent,
-    GiverGroupComponent,
-    GiverGroupFormComponent,
-    DynamicFormComponent,
-    DynamicFormQuestionComponent
+    ...DynamicFormComponents,
+    ...GiverGroupsComponents,
+    ...GiversComponents,
   ],
   imports: [
     BrowserModule,
@@ -46,8 +38,12 @@ import { DynamicFormQuestionComponent } from './dynamic-form-question/dynamic-fo
     MatButtonModule,
     MatListModule,
     MatCheckboxModule,
+    MatSelectModule,
   ],
-  providers: [],
+  providers: [
+    QuestionControlService,
+    QuestionService,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

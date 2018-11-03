@@ -1,4 +1,4 @@
-<mat-list>
+<mat-list *ngIf="givers.length">
   <h3 mat-subheader>All givers</h3>
   <mat-list-item *ngFor="let giver of givers; last as last">
     <p mat-line>Giver: {{giver.name}}, spouse: {{giver.spouse}}, id: {{giver.id}}</p>

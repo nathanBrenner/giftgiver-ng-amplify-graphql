@@ -5,12 +5,6 @@
       <gg-dynamic-form-question [question]="question" [form]="form"></gg-dynamic-form-question>
     </div>
 
-    <div class="form-row">
-      <button type="submit" [disabled]="!form.valid">Save</button>
-    </div>
+    <button mat-raised-button color="primary" type="submit">submit</button>
   </form>
-
-  <div *ngIf="payLoad" class="form-row">
-    <strong>Saved the following values</strong><br>{{payLoad}}
-  </div>
 </div>

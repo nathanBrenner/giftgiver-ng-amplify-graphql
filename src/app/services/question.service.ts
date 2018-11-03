@@ -15,8 +15,8 @@ export class QuestionService {
       return new CheckboxQuestion({
         key: giver.id,
         label: giver.name,
-        order: order,
-        value: giver.id,
+        value: false,
+        type: 'checkbox',
       });
     });
 

@@ -1,0 +1,13 @@
+<mat-card>
+  <mat-card-title>Giver Groups</mat-card-title>
+
+  <gg-giver-group-form
+    [givers]="givers"
+    (saveGroup)="saveGroup.emit($event)"
+  ></gg-giver-group-form>
+
+  <gg-giver-group-list
+    [groups]="groups"
+  ></gg-giver-group-list>
+
+</mat-card>

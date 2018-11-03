@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Giver } from '../../models';
 
 @Component({
   selector: 'gg-giver-groups',
@@ -6,6 +7,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./giver-groups.component.scss']
 })
 export class GiverGroupsComponent implements OnInit {
+  @Input()
+  givers: Giver[];
+
+  @Input()
+  groups: any[];
+
+  @Output()
+  saveGroup = new EventEmitter();
 
   constructor() { }
 
