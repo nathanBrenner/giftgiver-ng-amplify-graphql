@@ -24,4 +24,10 @@ export class GiverGroupFormComponent implements OnChanges {
     }
   }
 
+  save(payload) {
+    payload.preventDefault
+      ? payload.preventDefault()
+      : this.saveGroup.emit(Object.keys(payload).filter(id => Boolean(payload[id])));
+  }
+
 }

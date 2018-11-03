@@ -29,6 +29,10 @@ export class GiverFormComponent implements OnInit {
     this.buildForm();
   }
 
+  configActionGrid() {
+    return { 'grid-template-columns': this.givers.length ? 'repeat(3, 1fr)' : 'repeat(2, 1fr)' };
+  }
+
   buildForm() {
     this.form = this.formBuilder.group({
       name: new FormControl('', Validators.required),

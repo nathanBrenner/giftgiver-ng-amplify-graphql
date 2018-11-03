@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Giver } from './../../models';
 
 @Component({
   selector: 'gg-giver-group-list',
@@ -7,7 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class GiverGroupListComponent implements OnInit {
   @Input()
-  groups;
+  groups: Giver[];
 
   constructor() { }
 

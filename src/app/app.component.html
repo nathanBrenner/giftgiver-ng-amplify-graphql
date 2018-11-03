@@ -10,10 +10,11 @@
 
   <div>
     <gg-giver-groups
-      *ngIf="showGiverList"
       [givers]="givers"
       [groups]="groups"
+      [showGiverList]="showGiverList"
       (saveGroup)="saveGroup($event)"
+      (toggleGiverList)="toggleGiverList($event)"
     ></gg-giver-groups>
   </div>
 </div>

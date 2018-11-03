@@ -1,3 +1,7 @@
-<p>
-  giver-group works!
-</p>
+<mat-list *ngIf="group.length">
+  <h3 mat-subheader>Group</h3>
+  <mat-list-item *ngFor="let giver of group; last as last">
+    <p mat-line>Giver: {{giver.name}}, assigned to: {{giver.assignedTo.name}}</p>
+    <mat-divider [inset]="true" *ngIf="!last"></mat-divider>
+  </mat-list-item>
+</mat-list>

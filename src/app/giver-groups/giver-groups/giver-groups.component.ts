@@ -13,6 +13,9 @@ export class GiverGroupsComponent implements OnInit {
   @Input()
   groups: any[];
 
+  @Input()
+  showGiverList: boolean;
+
   @Output()
   saveGroup = new EventEmitter();
 

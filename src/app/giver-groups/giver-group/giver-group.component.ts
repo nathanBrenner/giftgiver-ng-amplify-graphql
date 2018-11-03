@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Giver } from './../../models';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'gg-giver-group',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./giver-group.component.scss']
 })
 export class GiverGroupComponent implements OnInit {
+  @Input()
+  group: Giver[];
 
   constructor() { }
 

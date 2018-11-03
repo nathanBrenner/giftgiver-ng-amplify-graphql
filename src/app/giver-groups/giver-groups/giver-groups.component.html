@@ -2,6 +2,7 @@
   <mat-card-title>Giver Groups</mat-card-title>
 
   <gg-giver-group-form
+    *ngIf="showGiverList"
     [givers]="givers"
     (saveGroup)="saveGroup.emit($event)"
   ></gg-giver-group-form>

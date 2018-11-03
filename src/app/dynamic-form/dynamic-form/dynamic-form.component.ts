@@ -24,7 +24,8 @@ export class DynamicFormComponent implements OnInit {
     this.form = this.qcs.toFormGroup(this.questions);
   }
 
-  onSubmit() {
+  onSubmit(e) {
+    e.preventDefault();
     if (this.form.valid) {
       this.submit.emit(this.form.value);
     }

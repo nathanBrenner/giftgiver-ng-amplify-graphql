@@ -7,9 +7,9 @@
     <input matInput placeholder="Spouse" formControlName="spouse">
   </mat-form-field>
 
-  <div class="form-actions">
-    <button mat-button *ngIf="!showGiverList" (click)="toggleGiverList.emit(showGiverList)" type="button">Create new list</button>
-    <button mat-button type="reset" *ngIf="!showGiverList">clear</button>
-    <button mat-raised-button color="primary" type="submit" *ngIf="!showGiverList">submit</button>
+  <div class="form-actions" [ngStyle]="configActionGrid()">
+    <button mat-button *ngIf="givers.length" (click)="toggleGiverList.emit(true)" type="button">Create new list</button>
+    <button mat-button type="reset">clear</button>
+    <button mat-raised-button color="primary" type="submit">submit</button>
   </div>
 </form>

@@ -3,6 +3,7 @@
     <mat-card-title>Givers</mat-card-title>
 
     <gg-giver-form
+      [givers]="givers"
       [showGiverList]="showGiverList"
       (saveGiver)="saveGiver.emit($event)"
       (toggleGiverList)="toggleGiverList.emit($event)"
