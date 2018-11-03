@@ -30,7 +30,11 @@ export class GiverFormComponent implements OnInit {
   }
 
   configActionGrid() {
-    return { 'grid-template-columns': this.givers.length ? 'repeat(3, 1fr)' : 'repeat(2, 1fr)' };
+    return { 'grid-template-columns': this.canCreateGroup() ? 'repeat(3, 1fr)' : 'repeat(2, 1fr)' };
+  }
+
+  canCreateGroup(): boolean {
+    return this.givers.length > 2 && !(this.givers.length % 2);
   }
 
   buildForm() {

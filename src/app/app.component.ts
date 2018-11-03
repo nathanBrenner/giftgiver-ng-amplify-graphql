@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Giver } from './models';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'gg-root',
@@ -12,8 +13,11 @@ export class AppComponent {
   showGiverList = false;
   attempts = 0;
 
+  constructor(public snackBar: MatSnackBar) {}
+
   addGiver(giver: Giver): void {
     this.givers = [...this.givers, giver];
+    this.showSnackbar('Giver created');
   }
 
   randommizeGroup(giverGroup: Giver[]): Giver[] {
@@ -40,21 +44,35 @@ export class AppComponent {
 
   saveGroup(data: string[]): void {
     const selectedGivers = this.givers.filter(giver => data.includes(giver.id));
-    const newGroup = this.randommizeGroup(selectedGivers);
-    const assignedTos = newGroup.map(giver => giver.assignedTo).filter(Boolean);
-    this.attempts = ++this.attempts;
+    if (!(selectedGivers.length  % 2)) {
+      const newGroup = this.randommizeGroup(selectedGivers);
+      const assignedTos = newGroup.map(giver => giver.assignedTo).filter(Boolean);
+      this.attempts = ++this.attempts;
 
-    if (assignedTos.length === 0 && this.attempts < 10) {
-      this.saveGroup(data);
+      if (this.attempts === 9) {
+        this.showSnackbar('Unable to create group');
+      }
+
+      if (assignedTos.length !== 0 && this.attempts < 10) {
+        this.groups = [ ...this.groups, newGroup];
+        this.toggleGiverList(false);
+        this.attempts = 0;
+      } else if (this.attempts < 10) {
+        this.saveGroup(data);
+      }
     } else {
-      this.groups = [ ...this.groups, newGroup];
-      this.toggleGiverList(false);
-      this.attempts = 0;
+      this.showSnackbar('Unable to create group');
     }
 
   }
 
   toggleGiverList(isVisible: boolean): void {
     this.showGiverList = isVisible;
+  }
+
+  showSnackbar(message: string) {
+    this.snackBar.open(message, 'dismiss', {
+      duration: 3000,
+    });
   }
 }

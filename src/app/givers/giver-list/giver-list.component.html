@@ -1,7 +1,7 @@
 <mat-list *ngIf="givers.length">
   <h3 mat-subheader>All givers</h3>
   <mat-list-item *ngFor="let giver of givers; last as last">
-    <p mat-line>Giver: {{giver.name}}, spouse: {{giver.spouse}}</p>
+    <p mat-line>Giver: {{giver.name}}<span *ngIf="giver.spouse">, spouse: {{giver.spouse}}</span></p>
     <mat-divider [inset]="true" *ngIf="!last"></mat-divider>
   </mat-list-item>
 </mat-list>

@@ -28,6 +28,7 @@ export class DynamicFormComponent implements OnInit {
     e.preventDefault();
     if (this.form.valid) {
       this.submit.emit(this.form.value);
+      this.form.reset();
     }
   }
 }
