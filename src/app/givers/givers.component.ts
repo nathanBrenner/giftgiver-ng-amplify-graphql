@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { Giver } from '../models';
 
 @Component({
   selector: 'gg-givers',
@@ -6,6 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./givers.component.scss']
 })
 export class GiversComponent implements OnInit {
+  @Input()
+  givers: Giver[];
+
+  @Output()
+  saveGiver: EventEmitter<Giver> = new EventEmitter();
 
   constructor() { }
 

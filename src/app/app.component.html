@@ -1,6 +1,11 @@
+<mat-toolbar>GiftGiver</mat-toolbar>
 <div class="app">
-  <h1>Gift Giver</h1>
-  <gg-givers></gg-givers>
 
-  <gg-giver-groups></gg-giver-groups>
+  <gg-givers
+    (saveGiver)="addGiver($event)"
+    [givers]="givers"
+  ></gg-givers>
+
+  <gg-giver-groups
+  ></gg-giver-groups>
 </div>

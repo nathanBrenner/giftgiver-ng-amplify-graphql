@@ -1,10 +1,15 @@
 import { Component } from '@angular/core';
+import { Giver } from './models';
 
 @Component({
-  selector: 'app-root',
+  selector: 'gg-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'giftgiver-ng-amplify-graphql';
+  givers: Giver[] = [];
+
+  addGiver(giver: Giver) {
+    this.givers = [...this.givers, giver];
+  }
 }

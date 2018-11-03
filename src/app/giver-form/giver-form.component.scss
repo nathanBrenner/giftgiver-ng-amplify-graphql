@@ -1,0 +1,13 @@
+.giver-form {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-column-gap: 20px;
+
+  .form-actions {
+    grid-area: 2/2/3/3;
+    justify-self: end;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-column-gap: 20px;
+  }
+}

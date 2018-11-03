@@ -1,7 +1,14 @@
 <div class="givers">
-  <h2>Givers</h2>
+  <mat-card>
+    <mat-card-title>Givers</mat-card-title>
 
-  <gg-giver-form></gg-giver-form>
+    <gg-giver-form
+      (saveGiver)="saveGiver.emit($event)"
+    ></gg-giver-form>
 
-  <gg-giver-list></gg-giver-list>
+    <gg-giver-list
+      [givers]="givers"
+    ></gg-giver-list>
+
+  </mat-card>
 </div>

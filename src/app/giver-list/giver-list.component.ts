@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Giver } from '../models';
 
 @Component({
   selector: 'gg-giver-list',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./giver-list.component.scss']
 })
 export class GiverListComponent implements OnInit {
+  @Input()
+  givers: Giver[];
 
   constructor() { }
 
