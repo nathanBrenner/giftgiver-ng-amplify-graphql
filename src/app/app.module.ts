@@ -13,6 +13,7 @@ import {
   MatCheckboxModule,
   MatSelectModule,
   MatSnackBarModule,
+  MatIconModule,
 } from '@angular/material';
 
 import { AppComponent } from './app.component';
@@ -41,6 +42,7 @@ import GiversComponents from './givers';
     MatCheckboxModule,
     MatSelectModule,
     MatSnackBarModule,
+    MatIconModule,
   ],
   providers: [
     QuestionControlService,
