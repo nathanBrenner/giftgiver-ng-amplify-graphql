@@ -2,9 +2,8 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.0.4,
 
-`ng add @angular/material` Really impressed with the added commands in the cli. Zero configuration after that command is required to get material in.
-
 ## components:
+  - auth: login, user registration
   - givers
     - giver-form
     - giver-list
@@ -12,3 +11,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
     - giver-group-form 
     - giver-group-list
       - giver-group
+
+## deployed
+https://d20n6ch3sk256y.cloudfront.net
+http://giftgiverngamplifygr-hosting-mobilehub-1994889244.s3-website.us-west-2.amazonaws.com

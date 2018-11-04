@@ -41,31 +41,31 @@ features:
           sdk-generation-stage-name: Development
         paths:
           /givers: !com.amazonaws.mobilehub.v0.Function 
-            codeFilename: uploads/givers-20181104150559.zip
+            codeFilename: uploads/givers-20181104151940.zip
             description: 'Handler for calls to resource path : /givers/{proxy+}'
             enableCORS: true
             environment: {}
             handler: lambda.handler
-            hashcode: JloKNIlAnL6zoufhabrwAEV38G4JrxXhrArjR4xSLxo=
+            hashcode: 4wfCdGbyivDbnrioLxHllp8pCfEm2NfGQx7rXPIHBvw=
             memorySize: '128'
-            modified: '2018-11-04T23:06:34.325+0000'
+            modified: '2018-11-04T23:20:18.604+0000'
             name: givers
             runtime: nodejs6.10
             timeout: '3'
-            version: zG3zmobEb3qPlYEUxR7Ii2Hv_RrBAZyK
+            version: NAlshmFsyLEFAloaGQQ32zCj2iwnM3nO
           '/givers/{proxy+}': !com.amazonaws.mobilehub.v0.Function 
-            codeFilename: uploads/givers-20181104150559.zip
+            codeFilename: uploads/givers-20181104151940.zip
             description: 'Handler for calls to resource path : /givers/{proxy+}'
             enableCORS: true
             environment: {}
             handler: lambda.handler
-            hashcode: JloKNIlAnL6zoufhabrwAEV38G4JrxXhrArjR4xSLxo=
+            hashcode: 4wfCdGbyivDbnrioLxHllp8pCfEm2NfGQx7rXPIHBvw=
             memorySize: '128'
-            modified: '2018-11-04T23:06:34.325+0000'
+            modified: '2018-11-04T23:20:18.604+0000'
             name: givers
             runtime: nodejs6.10
             timeout: '3'
-            version: PlVrPxjp4fO4fr61_OVThhJCzAa360Eq
+            version: IYYc4fU.bk4yjAz6A34d0ZALF1JgoZuC
   content-delivery: !com.amazonaws.mobilehub.v0.ContentDelivery 
     attributes:
       enabled: true
