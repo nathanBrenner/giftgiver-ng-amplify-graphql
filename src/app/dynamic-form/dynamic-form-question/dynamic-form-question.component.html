@@ -2,7 +2,7 @@
   <div [ngSwitch]="question.controlType">
 
     <mat-form-field *ngSwitchCase="'text'">
-      <input [formControlName]="question.key" placeholder="question.label">
+      <input matInput [formControlName]="question.key" [placeholder]="question.label">
     </mat-form-field>
 
     <mat-form-field *ngSwitchCase="'dropdown'">

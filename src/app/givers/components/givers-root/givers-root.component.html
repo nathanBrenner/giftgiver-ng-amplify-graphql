@@ -21,9 +21,13 @@
     <gg-giver-groups
       [givers]="givers"
       [groups]="groups"
+      [selectedGiverGroup]="selectedGiverGroup"
       [showGiverList]="showGiverList"
+      (deleteGiverGroup)="deleteGiverGroup($event)"
       (saveGroup)="saveGroup($event)"
+      (selectGiverGroup)="selectGiverGroup($event)"
       (toggleGiverList)="toggleGiverList($event)"
+      (updateGiverGroup)="updateGiverGroup($event)"
     ></gg-giver-groups>
   </div>
 </div>

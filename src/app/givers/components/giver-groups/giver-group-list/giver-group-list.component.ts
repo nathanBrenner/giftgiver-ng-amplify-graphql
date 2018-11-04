@@ -1,18 +1,19 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { Giver } from './../../../models';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { GiverGroup } from './../../../models';
 
 @Component({
   selector: 'gg-giver-group-list',
   templateUrl: './giver-group-list.component.html',
   styleUrls: ['./giver-group-list.component.scss']
 })
-export class GiverGroupListComponent implements OnInit {
+export class GiverGroupListComponent {
   @Input()
-  groups: Giver[];
+  groups: GiverGroup[];
 
-  constructor() { }
+  @Output()
+  deleteGiverGroup: EventEmitter<GiverGroup> = new EventEmitter();
 
-  ngOnInit() {
-  }
+  @Output()
+  selectGiverGroup: EventEmitter<GiverGroup> = new EventEmitter();
 
 }

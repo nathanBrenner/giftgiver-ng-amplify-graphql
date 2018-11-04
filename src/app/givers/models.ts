@@ -4,3 +4,9 @@ export interface Giver {
   spouse: string;
   assignedTo?: Giver;
 }
+
+export interface GiverGroup {
+  name: string;
+  id: string;
+  givers: Giver[];
+}
