@@ -3,6 +3,9 @@ import { QuestionControlService } from './services/question-control.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { AmplifyAngularModule, AmplifyService } from 'aws-amplify-angular';
 
 import {
   MatToolbarModule,
@@ -17,7 +20,6 @@ import {
 } from '@angular/material';
 
 import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import DynamicFormComponents from './dynamic-form';
 import GiverGroupsComponents from './giver-groups';
@@ -43,10 +45,12 @@ import GiversComponents from './givers';
     MatSelectModule,
     MatSnackBarModule,
     MatIconModule,
+    AmplifyAngularModule,
   ],
   providers: [
     QuestionControlService,
     QuestionService,
+    AmplifyService,
   ],
   bootstrap: [AppComponent]
 })
