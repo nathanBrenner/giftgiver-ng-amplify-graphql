@@ -19,6 +19,7 @@ import DynamicFormComponents from '../dynamic-form';
 import { GiversRoutingModule } from './givers-routing.module';
 import GiversComponents from './components';
 import { AmplifyAngularModule, AmplifyService } from 'aws-amplify-angular';
+import { GiverService } from './services/giver.service';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { AmplifyAngularModule, AmplifyService } from 'aws-amplify-angular';
     QuestionControlService,
     QuestionService,
     AmplifyService,
+    GiverService,
   ]
 })
 export class GiversModule { }

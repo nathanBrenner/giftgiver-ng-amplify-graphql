@@ -4,6 +4,7 @@ import { MatSnackBar } from '@angular/material';
 import { AmplifyService } from 'aws-amplify-angular';
 import { Router } from '@angular/router';
 import { API } from 'aws-amplify';
+import { GiverService } from '../../services/giver.service';
 
 @Component({
   selector: 'gg-givers-root',
@@ -21,10 +22,11 @@ export class GiversRootComponent implements OnInit {
     public snackBar: MatSnackBar,
     private router: Router,
     public amplifyService: AmplifyService,
+    private giverService: GiverService
   ) {}
 
   ngOnInit() {
-    API.get('giversCRUD', '/givers', {}).then(givers => {
+    this.giverService.get().then(givers => {
       this.givers = givers;
     }).catch(err => {
       console.error(err);
@@ -32,7 +34,7 @@ export class GiversRootComponent implements OnInit {
   }
 
   addGiver(giver: Giver): void {
-    API.post('giversCRUD', '/givers', { body: giver }).then(res => {
+    this.giverService.post(giver).then(res => {
       this.givers = [...this.givers, giver];
       this.showSnackbar('Giver created');
     }).catch(err => console.error(err));
@@ -46,7 +48,7 @@ export class GiversRootComponent implements OnInit {
   }
 
   deleteGiver(deletedGiver: Giver): void {
-    API.del('giversCRUD', `/givers/object/${deletedGiver.id}`, {}).then(() => {
+    this.giverService.delete(deletedGiver).then(() => {
       this.givers = this.givers.filter(giver => giver.id !== deletedGiver.id);
       this.showSnackbar(`Deleted ${deletedGiver.name}`);
     }).catch(err => console.error(err));
@@ -109,7 +111,7 @@ export class GiversRootComponent implements OnInit {
   }
 
   updateGiver(updatedGiver: Giver): void {
-    API.put('giversCRUD', '/givers', { body: updatedGiver }).then(res => {
+    this.giverService.put(updatedGiver).then(res => {
       this.givers = this.givers.map(giver => giver.id === updatedGiver.id ? updatedGiver : giver);
       this.showSnackbar(`${updatedGiver.name} has been updated`);
       this.selectedGiver = null;
