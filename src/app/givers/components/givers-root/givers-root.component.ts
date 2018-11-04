@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 export class GiversRootComponent {
   givers: Giver[] = [];
   groups: any[] = [];
+  selectedGiver: Giver;
   showGiverList = false;
   attempts = 0;
 
@@ -33,8 +34,12 @@ export class GiversRootComponent {
     return { ...giver, assignedTo: assignedTo ? assignedTo : null };
   }
 
+  deleteGiver(deletedGiver: Giver): void {
+    this.givers = this.givers.filter(giver => giver.id !== deletedGiver.id);
+    this.showSnackbar(`Deleted ${deletedGiver.name}`);
+  }
+
   logout() {
-    // this.auth.signOut().then(data => this.router.navigate(['/']));
     this.amplifyService.auth().signOut().then(data => this.router.navigate(['/']));
   }
 
@@ -76,6 +81,10 @@ export class GiversRootComponent {
     }
   }
 
+  selectGiver(giver: Giver): void {
+    this.selectedGiver = giver;
+  }
+
   showSnackbar(message: string) {
     this.snackBar.open(message, 'dismiss', {
       duration: 3000,
@@ -86,4 +95,9 @@ export class GiversRootComponent {
     this.showGiverList = isVisible;
   }
 
+  updateGiver(updatedGiver: Giver): void {
+    this.givers = this.givers.map(giver => giver.id === updatedGiver.id ? updatedGiver : giver);
+    this.showSnackbar(`${updatedGiver.name} has been updated`);
+    this.selectedGiver = null;
+  }
 }

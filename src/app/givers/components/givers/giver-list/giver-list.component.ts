@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Giver } from '../../../models';
 
 @Component({
@@ -6,13 +6,14 @@ import { Giver } from '../../../models';
   templateUrl: './giver-list.component.html',
   styleUrls: ['./giver-list.component.scss']
 })
-export class GiverListComponent implements OnInit {
+export class GiverListComponent {
   @Input()
   givers: Giver[];
 
-  constructor() { }
+  @Output()
+  selectGiver: EventEmitter<Giver> = new EventEmitter();
 
-  ngOnInit() {
-  }
+  @Output()
+  deleteGiver: EventEmitter<Giver> = new EventEmitter();
 
 }

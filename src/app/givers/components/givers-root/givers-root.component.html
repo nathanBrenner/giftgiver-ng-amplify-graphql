@@ -8,9 +8,13 @@
 
   <gg-givers
     [givers]="givers"
+    [selectedGiver]="selectedGiver"
     [showGiverList]="showGiverList"
+    (deleteGiver)="deleteGiver($event)"
     (saveGiver)="addGiver($event)"
+    (selectGiver)="selectGiver($event)"
     (toggleGiverList)="toggleGiverList($event)"
+    (updateGiver)="updateGiver($event)"
   ></gg-givers>
 
   <div>

@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input, SimpleChanges, OnChanges } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Giver } from '../../../models';
 import * as uuid from 'uuid/v4';
@@ -8,9 +8,12 @@ import * as uuid from 'uuid/v4';
   templateUrl: './giver-form.component.html',
   styleUrls: ['./giver-form.component.scss']
 })
-export class GiverFormComponent implements OnInit {
+export class GiverFormComponent implements OnInit, OnChanges {
   @Input()
   givers: Giver[];
+
+  @Input()
+  selectedGiver: Giver;
 
   @Input()
   showGiverList: boolean;
@@ -21,12 +24,21 @@ export class GiverFormComponent implements OnInit {
   @Output()
   toggleGiverList: EventEmitter<boolean> = new EventEmitter();
 
+  @Output()
+  updateGiver: EventEmitter<Giver> = new EventEmitter();
+
   form: FormGroup;
 
   constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit() {
     this.buildForm();
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (this.form && this.selectedGiver) {
+      this.setForm();
+    }
   }
 
   configActionGrid() {
@@ -46,9 +58,14 @@ export class GiverFormComponent implements OnInit {
 
   onSubmit() {
     if (this.form.valid) {
-      const giver = { ...this.form.value, id: uuid() };
-      this.saveGiver.emit(giver);
+      const id = this.selectedGiver ? this.selectedGiver.id : uuid();
+      const giver = { ...this.form.value, id };
+      this.selectedGiver ? this.updateGiver.emit(giver) : this.saveGiver.emit(giver);
       this.form.setValue({name: '', spouse: ''});
     }
+  }
+
+  setForm(): void {
+    this.form.setValue({name: this.selectedGiver.name, spouse: this.selectedGiver.spouse});
   }
 }
