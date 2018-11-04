@@ -1,27 +1,28 @@
 import { Injectable } from '@angular/core';
 import { API } from 'aws-amplify';
-import { Giver } from '../models';
+import { GiverGroup } from '../models';
 
 @Injectable({
   providedIn: 'root'
 })
-export class GiverService {
-  private apiName = 'giversCRUD';
-  private path = '/givers';
+export class GiverGroupService {
+
+  private apiName = 'giverGroupCRUD';
+  private path = '/giverGroup';
 
   get() {
     return API.get(this.apiName, this.path, {});
   }
 
-  post(entity: Giver) {
+  post(entity: GiverGroup) {
     return API.post(this.apiName, this.path, { body: entity });
   }
 
-  put(entity: Giver) {
+  put(entity: GiverGroup) {
     return API.put(this.apiName, this.path, { body: entity });
   }
 
-  delete(entity: Giver) {
+  delete(entity: GiverGroup) {
     return API.del(this.apiName, `${this.path}/object/${entity.id}`, {});
   }
 }

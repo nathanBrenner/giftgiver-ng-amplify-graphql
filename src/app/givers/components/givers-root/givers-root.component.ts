@@ -1,3 +1,4 @@
+import { GiverGroupService } from './../../services/giver-group.service';
 import { Component, OnInit } from '@angular/core';
 import { Giver, GiverGroup } from '../../models';
 import { MatSnackBar } from '@angular/material';
@@ -23,22 +24,25 @@ export class GiversRootComponent implements OnInit {
     public snackBar: MatSnackBar,
     private router: Router,
     public amplifyService: AmplifyService,
-    private giverService: GiverService
+    private giverService: GiverService,
+    private giverGroupService: GiverGroupService,
   ) {}
 
   ngOnInit() {
     this.giverService.get().then(givers => {
       this.givers = givers;
-    }).catch(err => {
-      console.error(err);
-    });
+    }).catch(console.error);
+
+    this.giverGroupService.get().then(groups => {
+      this.groups = groups;
+    }).catch(console.error);
   }
 
   addGiver(giver: Giver): void {
     this.giverService.post(giver).then(res => {
       this.givers = [...this.givers, giver];
       this.showSnackbar('Giver created');
-    }).catch(err => console.error(err));
+    }).catch(console.error);
   }
 
   assignGiver(giver: Giver, group: Giver[]): Giver {
@@ -52,15 +56,29 @@ export class GiversRootComponent implements OnInit {
     this.giverService.delete(deletedGiver).then(() => {
       this.givers = this.givers.filter(giver => giver.id !== deletedGiver.id);
       this.showSnackbar(`Deleted ${deletedGiver.name}`);
-    }).catch(err => console.error(err));
+    }).catch(console.error);
   }
 
   deleteGiverGroup(deletedGiverGroup: GiverGroup): void {
-    this.groups = this.groups.filter(group => group.id !== deletedGiverGroup.id);
+    this.giverGroupService.delete(deletedGiverGroup).then(res => {
+      this.groups = this.groups.filter(group => group.id !== deletedGiverGroup.id);
+    }).catch(console.error);
   }
 
   logout() {
     this.amplifyService.auth().signOut().then(data => this.router.navigate(['/']));
+  }
+
+  postGiverGroup(group: GiverGroup): void {
+    this.giverGroupService.post(group).then((res) => {
+      this.groups = [...this.groups, group];
+    }).catch(console.error);
+  }
+
+  putGiverGroup(updatedGroup: GiverGroup): void {
+    this.giverGroupService.put(updatedGroup).then((res) => {
+      this.groups = this.groups.map(group => group.id === updatedGroup.id ? updatedGroup : group);
+    }).catch(console.error);
   }
 
   randomizeGroup(giverGroup: Giver[]): Giver[] {
@@ -103,9 +121,13 @@ export class GiversRootComponent implements OnInit {
         // there are all unique pairs and fewer than 10 attempts to randomize givers with eachother
 
         // this should work for both update and add. If there was an id in the payload, update, otherwise add
-        this.groups = id
-          ? this.groups.map(group => group.id === id ? { name, id, givers: newGroup } : group)
-          : [ ...this.groups, { name, id: uuid(), givers: newGroup }];
+        // this.groups = id
+        //   ? this.groups.map(group => group.id === id ? { name, id, givers: newGroup } : group)
+        //   : [ ...this.groups, { name, id: uuid(), givers: newGroup }];
+        id
+          ? this.putGiverGroup({ name, id, givers: newGroup })
+          : this.postGiverGroup({ name, id: uuid(), givers: newGroup });
+
         this.toggleGiverList(false);
         this.attempts = 0;
       } else if (this.attempts < 10) {
@@ -140,7 +162,7 @@ export class GiversRootComponent implements OnInit {
       this.givers = this.givers.map(giver => giver.id === updatedGiver.id ? updatedGiver : giver);
       this.showSnackbar(`${updatedGiver.name} has been updated`);
       this.selectedGiver = null;
-    }).catch(err => console.error(err));
+    }).catch(console.error);
   }
 
   updateGiverGroup(updatedGiverGroup: {id: string, name: string, givers: string[]}): void {

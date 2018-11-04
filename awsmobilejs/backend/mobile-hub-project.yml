@@ -2,6 +2,38 @@
 features:
   cloudlogic: !com.amazonaws.mobilehub.v0.CloudLogic 
     components:
+      giverGroupCRUD: !com.amazonaws.mobilehub.v0.API 
+        attributes:
+          name: giverGroupCRUD
+          requires-signin: true
+          sdk-generation-stage-name: Development
+        paths:
+          /giverGroup: !com.amazonaws.mobilehub.v0.Function 
+            codeFilename: uploads/giverGroup-20181104150004.zip
+            description: 'Handler for calls to resource path : /giverGroup/{proxy+}'
+            enableCORS: true
+            environment: {}
+            handler: lambda.handler
+            hashcode: NW+AvlLhU1RUwKFK4nljLvJWWyQmasm5cupPdxjw9t8=
+            memorySize: '128'
+            modified: '2018-11-04T23:00:54.822+0000'
+            name: giverGroup
+            runtime: nodejs6.10
+            timeout: '3'
+            version: sLN8lXomo5d.qZkEbYFEQ72XswV5nw_h
+          '/giverGroup/{proxy+}': !com.amazonaws.mobilehub.v0.Function 
+            codeFilename: uploads/giverGroup-20181104150004.zip
+            description: 'Handler for calls to resource path : /giverGroup/{proxy+}'
+            enableCORS: true
+            environment: {}
+            handler: lambda.handler
+            hashcode: NW+AvlLhU1RUwKFK4nljLvJWWyQmasm5cupPdxjw9t8=
+            memorySize: '128'
+            modified: '2018-11-04T23:00:54.822+0000'
+            name: giverGroup
+            runtime: nodejs6.10
+            timeout: '3'
+            version: UrAathddWWnL0vnd1GqJP6gngvcIL_R4
       giversCRUD: !com.amazonaws.mobilehub.v0.API 
         attributes:
           name: giversCRUD
@@ -9,31 +41,31 @@ features:
           sdk-generation-stage-name: Development
         paths:
           /givers: !com.amazonaws.mobilehub.v0.Function 
-            codeFilename: uploads/givers-20181104094755.zip
+            codeFilename: uploads/givers-20181104150559.zip
             description: 'Handler for calls to resource path : /givers/{proxy+}'
             enableCORS: true
             environment: {}
             handler: lambda.handler
-            hashcode: iGwMiR99b8lG40omr9tyG6faaMhCskIKHizVdUc5WEs=
+            hashcode: JloKNIlAnL6zoufhabrwAEV38G4JrxXhrArjR4xSLxo=
             memorySize: '128'
-            modified: '2018-11-04T17:48:32.269+0000'
+            modified: '2018-11-04T23:06:34.325+0000'
             name: givers
             runtime: nodejs6.10
             timeout: '3'
-            version: siTGAlEZw.Jx1iUvouVZURVDIC7RvXcK
+            version: zG3zmobEb3qPlYEUxR7Ii2Hv_RrBAZyK
           '/givers/{proxy+}': !com.amazonaws.mobilehub.v0.Function 
-            codeFilename: uploads/givers-20181104094755.zip
+            codeFilename: uploads/givers-20181104150559.zip
             description: 'Handler for calls to resource path : /givers/{proxy+}'
             enableCORS: true
             environment: {}
             handler: lambda.handler
-            hashcode: iGwMiR99b8lG40omr9tyG6faaMhCskIKHizVdUc5WEs=
+            hashcode: JloKNIlAnL6zoufhabrwAEV38G4JrxXhrArjR4xSLxo=
             memorySize: '128'
-            modified: '2018-11-04T17:48:32.269+0000'
+            modified: '2018-11-04T23:06:34.325+0000'
             name: givers
             runtime: nodejs6.10
             timeout: '3'
-            version: 74leyGkGzzOVwVvTv07CL1.nKbyQQobe
+            version: PlVrPxjp4fO4fr61_OVThhJCzAa360Eq
   content-delivery: !com.amazonaws.mobilehub.v0.ContentDelivery 
     attributes:
       enabled: true
@@ -44,6 +76,18 @@ features:
     components:
       database-nosql: !com.amazonaws.mobilehub.v0.NoSQLDatabase 
         tables:
+          - !com.amazonaws.mobilehub.v0.NoSQLTable 
+            attributes:
+              givers: L
+              id: S
+              name: S
+              userId: S
+            hashKeyName: userId
+            hashKeyType: S
+            rangeKeyName: id
+            rangeKeyType: S
+            tableName: ___DYNAMIC_PREFIX___-giverGroup
+            tablePrivacy: private
           - !com.amazonaws.mobilehub.v0.NoSQLTable 
             attributes:
               id: S
