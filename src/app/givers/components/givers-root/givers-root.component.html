@@ -1,0 +1,20 @@
+<mat-toolbar>GiftGiver</mat-toolbar>
+<div class="givers-root">
+
+  <gg-givers
+    [givers]="givers"
+    [showGiverList]="showGiverList"
+    (saveGiver)="addGiver($event)"
+    (toggleGiverList)="toggleGiverList($event)"
+  ></gg-givers>
+
+  <div>
+    <gg-giver-groups
+      [givers]="givers"
+      [groups]="groups"
+      [showGiverList]="showGiverList"
+      (saveGroup)="saveGroup($event)"
+      (toggleGiverList)="toggleGiverList($event)"
+    ></gg-giver-groups>
+  </div>
+</div>

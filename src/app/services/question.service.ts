@@ -1,4 +1,4 @@
-import { Giver } from './../models';
+import { Giver } from '../givers/models';
 import { Injectable } from '@angular/core';
 import { QuestionBase, CheckboxQuestion } from './question-base';
 

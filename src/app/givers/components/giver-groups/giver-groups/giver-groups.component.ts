@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Giver } from '../../models';
+import { Giver } from '../../../models';
 
 @Component({
   selector: 'gg-giver-groups',

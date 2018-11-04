@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Giver } from '../../models';
+import { Giver } from '../../../models';
 import * as uuid from 'uuid/v4';
 
 @Component({

@@ -1,6 +1,6 @@
 import { Component, Input, Output, EventEmitter, SimpleChanges, OnChanges } from '@angular/core';
-import { QuestionService } from '../../services/question.service';
-import { Giver } from '../../models';
+import { QuestionService } from '../../../../services/question.service';
+import { Giver } from '../../../models';
 
 @Component({
   selector: 'gg-giver-group-form',
