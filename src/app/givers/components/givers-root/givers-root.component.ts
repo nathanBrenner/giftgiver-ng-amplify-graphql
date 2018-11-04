@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Giver } from '../../models';
 import { MatSnackBar } from '@angular/material';
+import { AmplifyService } from 'aws-amplify-angular';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'gg-givers-root',
@@ -13,11 +15,27 @@ export class GiversRootComponent {
   showGiverList = false;
   attempts = 0;
 
-  constructor(public snackBar: MatSnackBar) {}
+  constructor(
+    public snackBar: MatSnackBar,
+    private router: Router,
+    public amplifyService: AmplifyService,
+  ) {}
 
   addGiver(giver: Giver): void {
     this.givers = [...this.givers, giver];
     this.showSnackbar('Giver created');
+  }
+
+  assignGiver(giver: Giver, group: Giver[]): Giver {
+    group = group.filter(loopedGiver => loopedGiver.name !== giver.spouse && loopedGiver.name !== giver.name);
+    const randomNumber = Math.floor(Math.random() * group.length);
+    const assignedTo = group[randomNumber];
+    return { ...giver, assignedTo: assignedTo ? assignedTo : null };
+  }
+
+  logout() {
+    // this.auth.signOut().then(data => this.router.navigate(['/']));
+    this.amplifyService.auth().signOut().then(data => this.router.navigate(['/']));
   }
 
   randommizeGroup(giverGroup: Giver[]): Giver[] {
@@ -33,13 +51,6 @@ export class GiversRootComponent {
         return updatedGiver;
       });
     }
-  }
-
-  assignGiver(giver: Giver, group: Giver[]): Giver {
-    group = group.filter(loopedGiver => loopedGiver.name !== giver.spouse && loopedGiver.name !== giver.name);
-    const randomNumber = Math.floor(Math.random() * group.length);
-    const assignedTo = group[randomNumber];
-    return { ...giver, assignedTo: assignedTo ? assignedTo : null };
   }
 
   saveGroup(data: string[]): void {
@@ -63,11 +74,6 @@ export class GiversRootComponent {
     } else {
       this.showSnackbar('Unable to create group');
     }
-
-  }
-
-  toggleGiverList(isVisible: boolean): void {
-    this.showGiverList = isVisible;
   }
 
   showSnackbar(message: string) {
@@ -75,4 +81,9 @@ export class GiversRootComponent {
       duration: 3000,
     });
   }
+
+  toggleGiverList(isVisible: boolean): void {
+    this.showGiverList = isVisible;
+  }
+
 }

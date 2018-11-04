@@ -1,4 +1,9 @@
-<mat-toolbar>GiftGiver</mat-toolbar>
+<mat-toolbar>
+  <div class="toolbar">
+    <span>GiftGiver</span>
+    <button mat-button (click)="logout()">logout</button>
+  </div>
+</mat-toolbar>
 <div class="givers-root">
 
   <gg-givers
