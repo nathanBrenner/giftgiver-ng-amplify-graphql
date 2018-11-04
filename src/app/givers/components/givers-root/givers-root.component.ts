@@ -3,13 +3,14 @@ import { Giver } from '../../models';
 import { MatSnackBar } from '@angular/material';
 import { AmplifyService } from 'aws-amplify-angular';
 import { Router } from '@angular/router';
+import { API } from 'aws-amplify';
 
 @Component({
   selector: 'gg-givers-root',
   templateUrl: './givers-root.component.html',
   styleUrls: ['./givers-root.component.scss']
 })
-export class GiversRootComponent {
+export class GiversRootComponent implements OnInit {
   givers: Giver[] = [];
   groups: any[] = [];
   selectedGiver: Giver;
@@ -22,9 +23,19 @@ export class GiversRootComponent {
     public amplifyService: AmplifyService,
   ) {}
 
+  ngOnInit() {
+    API.get('giversCRUD', '/givers', {}).then(givers => {
+      this.givers = givers;
+    }).catch(err => {
+      console.error(err);
+    });
+  }
+
   addGiver(giver: Giver): void {
-    this.givers = [...this.givers, giver];
-    this.showSnackbar('Giver created');
+    API.post('giversCRUD', '/givers', { body: giver }).then(res => {
+      this.givers = [...this.givers, giver];
+      this.showSnackbar('Giver created');
+    }).catch(err => console.error(err));
   }
 
   assignGiver(giver: Giver, group: Giver[]): Giver {
@@ -35,8 +46,10 @@ export class GiversRootComponent {
   }
 
   deleteGiver(deletedGiver: Giver): void {
-    this.givers = this.givers.filter(giver => giver.id !== deletedGiver.id);
-    this.showSnackbar(`Deleted ${deletedGiver.name}`);
+    API.del('giversCRUD', `/givers/object/${deletedGiver.id}`, {}).then(() => {
+      this.givers = this.givers.filter(giver => giver.id !== deletedGiver.id);
+      this.showSnackbar(`Deleted ${deletedGiver.name}`);
+    }).catch(err => console.error(err));
   }
 
   logout() {
@@ -96,8 +109,10 @@ export class GiversRootComponent {
   }
 
   updateGiver(updatedGiver: Giver): void {
-    this.givers = this.givers.map(giver => giver.id === updatedGiver.id ? updatedGiver : giver);
-    this.showSnackbar(`${updatedGiver.name} has been updated`);
-    this.selectedGiver = null;
+    API.put('giversCRUD', '/givers', { body: updatedGiver }).then(res => {
+      this.givers = this.givers.map(giver => giver.id === updatedGiver.id ? updatedGiver : giver);
+      this.showSnackbar(`${updatedGiver.name} has been updated`);
+      this.selectedGiver = null;
+    }).catch(err => console.error(err));
   }
 }

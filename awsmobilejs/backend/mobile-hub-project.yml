@@ -1,11 +1,61 @@
 --- !com.amazonaws.mobilehub.v0.Project 
 features:
+  cloudlogic: !com.amazonaws.mobilehub.v0.CloudLogic 
+    components:
+      giversCRUD: !com.amazonaws.mobilehub.v0.API 
+        attributes:
+          name: giversCRUD
+          requires-signin: true
+          sdk-generation-stage-name: Development
+        paths:
+          /givers: !com.amazonaws.mobilehub.v0.Function 
+            codeFilename: uploads/givers-20181104094755.zip
+            description: 'Handler for calls to resource path : /givers/{proxy+}'
+            enableCORS: true
+            environment: {}
+            handler: lambda.handler
+            hashcode: iGwMiR99b8lG40omr9tyG6faaMhCskIKHizVdUc5WEs=
+            memorySize: '128'
+            modified: '2018-11-04T17:48:32.269+0000'
+            name: givers
+            runtime: nodejs6.10
+            timeout: '3'
+            version: siTGAlEZw.Jx1iUvouVZURVDIC7RvXcK
+          '/givers/{proxy+}': !com.amazonaws.mobilehub.v0.Function 
+            codeFilename: uploads/givers-20181104094755.zip
+            description: 'Handler for calls to resource path : /givers/{proxy+}'
+            enableCORS: true
+            environment: {}
+            handler: lambda.handler
+            hashcode: iGwMiR99b8lG40omr9tyG6faaMhCskIKHizVdUc5WEs=
+            memorySize: '128'
+            modified: '2018-11-04T17:48:32.269+0000'
+            name: givers
+            runtime: nodejs6.10
+            timeout: '3'
+            version: 74leyGkGzzOVwVvTv07CL1.nKbyQQobe
   content-delivery: !com.amazonaws.mobilehub.v0.ContentDelivery 
     attributes:
       enabled: true
       visibility: public-global
     components:
       release: !com.amazonaws.mobilehub.v0.Bucket {}
+  database: !com.amazonaws.mobilehub.v0.Database 
+    components:
+      database-nosql: !com.amazonaws.mobilehub.v0.NoSQLDatabase 
+        tables:
+          - !com.amazonaws.mobilehub.v0.NoSQLTable 
+            attributes:
+              id: S
+              name: S
+              spouse: S
+              userId: S
+            hashKeyName: userId
+            hashKeyType: S
+            rangeKeyName: id
+            rangeKeyType: S
+            tableName: ___DYNAMIC_PREFIX___-givers
+            tablePrivacy: private
   sign-in: !com.amazonaws.mobilehub.v0.SignIn 
     attributes:
       enabled: true
